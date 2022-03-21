@@ -23,7 +23,7 @@ const blogSchema = new mongoose.Schema({
 
     },
 
-    tags: [  { type: String, required: [true, 'tags are required'] } ],
+    tags: [  { type: String, trim:true }],
 
     
     category: {

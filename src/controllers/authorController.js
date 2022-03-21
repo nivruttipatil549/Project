@@ -109,7 +109,7 @@ const loginAuthor = async function (req, res) {
       res.status(400).send({ status: false, message: "invalid request parameters . Please Provide login Details" })
     }
 
-    const { email, password } = requestBody
+    const { email, password } = requestBody;
 
     if (!isValid(email)) {
       res.status(400).send({ Status: false, message: "Email Is Required" })
@@ -129,13 +129,13 @@ const loginAuthor = async function (req, res) {
     let Author = await AuthorModel.findOne({ email, password });
 
     if (!Author)
-      return res.status(404).send({ status: false, msg: "Author Not Found , plz check Credintials", });
+      return res.status(401).send({ status: false, msg: "Author Not Found , plz check Credintials", });
 
 
     let token = jwt.sign(
       {
         authorId: Author._id.toString(),
-        groupno: "42",
+        groupno: "15",
         exp: Math.floor(Date.now() / 1000) + 10 * 60 * 60
       },
       "this-is-aSecretTokenForLogin"
